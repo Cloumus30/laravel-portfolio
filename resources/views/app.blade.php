@@ -13,7 +13,9 @@
     </head>
     <body class="flex flex-row">
        <nav class="w-3/12 bg-rose-500 text-white h-screen"> 
-         @yield('navside')
+
+         @include('component.navside')
+         
        </nav>
        <main class="w-10/12 text-white bg-[#060047] max-h-screen">
         Body Main
