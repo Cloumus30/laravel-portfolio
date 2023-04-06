@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('/form-porto', function () {
     return view('pages.formPortoPage');
 });
+
+Route::post('/form-submit', function(){
+    return response()->json([
+        'data' => request()->toArray()
+    ]);
+});
