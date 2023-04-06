@@ -25,7 +25,14 @@ function submitFormPorto(){
   const form = new FormData(formPorto);
   form.append('description', quillVal);
   
-  axios.post('/form-submit',form);
+  axios.post('/form-submit',form)
+  .then((res)=>{
+    window.location.href = '/'
+  })
+  .catch((err) => {
+    console.log(err);
+    alert(err);
+  });
 }
 
 /**

@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('pages.app');
 });
 
+Route::get('/login', function () {
+    return view('pages.loginPage');
+});
+
 Route::get('/form-porto', function () {
     return view('pages.formPortoPage');
 });
