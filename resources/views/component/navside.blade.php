@@ -1,6 +1,6 @@
-
+<nav class="w-full md:w-3/12 bg-rose-500 text-white h-screen hidden md:block" id="navside">
     <div class="flex flex-col w-full h-full">
-        <div class=" self-center mt-auto mb-auto">
+        <div class="self-center md:mt-auto md:mb-auto">
             <img src="{{ Vite::asset('resources/images/Cloudias Imani Pradana.jpg') }}" alt="" class="rounded-full w-48 h-48 object-cover">
 
             <p class="self-center text-xl my-4">
@@ -30,7 +30,6 @@
                 
             </div>
         </div>
-        
-        
     </div>    
-
+</nav>
+    

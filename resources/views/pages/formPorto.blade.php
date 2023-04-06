@@ -19,7 +19,7 @@
 
         @include('component.navside')
         
-        @include('component.home.body')
+        
         
       </div>
        

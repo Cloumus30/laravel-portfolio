@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.app');
 });
+
+Route::get('/form-porto', function () {
+    return view('pages.formPorto');
+});
