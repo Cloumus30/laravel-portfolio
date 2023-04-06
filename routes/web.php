@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/form-porto', function () {
-    return view('pages.formPorto');
+    return view('pages.formPortoPage');
 });

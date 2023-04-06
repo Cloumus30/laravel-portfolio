@@ -11,7 +11,8 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
-
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.bubble.css">
     </head>
     <body >
       @include('component.navbar')
@@ -19,10 +20,13 @@
 
         @include('component.navside')
         
-        
+        @include('component.formPorto')
         
       </div>
-       
+       <!-- Include the Quill library -->
+      <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
       <script src="{{Vite::asset('resources/js/nav.js')}}"></script>
+      <script src="{{Vite::asset('resources/js/editor.js')}}"></script>
     </body>
 </html>
