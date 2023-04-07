@@ -1,10 +1,14 @@
 <main class="w-full md:w-10/12 text-white bg-[#060047] max-h-screen overflow-auto">
     <div class="p-5">
-        <form id="form-porto" onsubmit="submitFormPorto(this)">
+        <form id="form-porto" action="/form-submit" method="POST" onsubmit="submitFormPorto(this)" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="app-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul / Nama</label>
                 <input type="text" id="app-name" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Aplikasi Note" required>
+            </div>
+            <div class="mb-6">
+                <label for="link" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Aplikasi</label>
+                <input type="text" id="link" name="link" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://notes.com">
             </div>
             <div class="mb-6">
                 <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi App</label>
@@ -12,11 +16,11 @@
                 <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @include('component.editor')
                 </div>
-                
+                <input type="text" id="description" name="description" hidden>
             </div>
             <div class="mb-6">
                 <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">App Photo</label>
-                <input onchange="previewImage()" class="block w-full py-1 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="photo" name="photo" type="file" >
+                <input onchange="previewImage()" accept="image/png, image/jpg, image/jpeg" class="block w-full py-1 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="photo" name="photo" type="file">
             </div>
             
             <div class="mb-6">

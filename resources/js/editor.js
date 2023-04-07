@@ -20,19 +20,9 @@ toolbar[0].classList.add('ql-bubble');
 function submitFormPorto(){
   event.preventDefault()
   const formPorto = document.getElementById('form-porto');
-  const title = document.getElementById('app-name');
-  const photo = document.getElementById('photo').files[0];
-  const form = new FormData(formPorto);
-  form.append('description', quillVal);
-  
-  axios.post('/form-submit',form)
-  .then((res)=>{
-    window.location.href = '/'
-  })
-  .catch((err) => {
-    console.log(err);
-    alert(err);
-  });
+  const description = document.getElementById('description');
+  description.value = quillVal;
+  formPorto.submit();
 }
 
 /**

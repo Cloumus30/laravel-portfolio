@@ -8,20 +8,25 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function login(Request $request){
-        $credentials = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string'
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect()->intended('/');
+        try {
+            $credentials = $request->validate([
+                'email' => 'required|string|email',
+                'password' => 'required|string'
+            ]);
+    
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+     
+                return redirect()->intended('/');
+            }
+     
+            return back()->with(
+                'error', 'Email dan Password Salah',
+            )->onlyInput('email');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
         }
- 
-        return back()->with(
-            'error', 'Emial dan Password Salah',
-        )->onlyInput('email');
+        
     }
 
     public function logout(Request $request){
