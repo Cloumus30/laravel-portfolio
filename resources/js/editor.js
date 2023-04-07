@@ -17,7 +17,7 @@ toolbar[0].classList.add('ql-bubble');
 /**
  * Submit Form Porto
  */
-function submitFormPorto(){
+window.submitFormPorto = function(){
   event.preventDefault()
   const formPorto = document.getElementById('form-porto');
   const description = document.getElementById('description');
@@ -28,7 +28,7 @@ function submitFormPorto(){
 /**
  * Preview Image When Uploaded Image
  */
-function previewImage(){
+window.previewImage = function (){
   console.log('data');
   const photo = document.getElementById('photo').files[0];
   const reader  = new FileReader();
@@ -39,5 +39,3 @@ function previewImage(){
     photoPreview.src = reader.result;  
   }
 }
-
- 

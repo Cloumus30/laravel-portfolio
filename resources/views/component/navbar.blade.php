@@ -1,6 +1,9 @@
 
 <nav class="bg-rose-500 border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-14 py-4">
+      <button onclick="toggleNavside()" class="text-white md:hidden">
+        @include('component.icons',['type' => 'menu'])
+      </button>
       <a href="/" class="flex items-center text-white">
           <span class="text-2xl font-semibold whitespace-nowrap ">Cloudias Imani Pradana</span>
       </a>
