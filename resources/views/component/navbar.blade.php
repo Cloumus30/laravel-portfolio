@@ -4,6 +4,11 @@
       <a href="/" class="flex items-center text-white">
           <span class="text-2xl font-semibold whitespace-nowrap ">Cloudias Imani Pradana</span>
       </a>
+      @auth
+      <a href="/logout" class="flex items-center text-white">
+          <span class=" font-semibold whitespace-nowrap ">Logout</span>
+      </a>
+      @endauth
     </div>
   </nav>
   

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.app');
-});
+Route::get('/', [ViewController::class, 'home']);
 
-Route::get('/login', function () {
-    return view('pages.loginPage');
-});
+Route::get('/login', [ViewController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/form-porto', function () {
-    return view('pages.formPortoPage');
-});
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('/form-porto', [ViewController::class, 'formPorto']);
 
 Route::post('/form-submit', function(){
     return response()->json([
