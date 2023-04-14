@@ -26,3 +26,5 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/form-porto', [ViewController::class, 'formPorto']);
 Route::post('/form-submit', [PortoController::class, 'createPorto']);
 Route::get('/porto-delete/{portoId}', [PortoController::class, 'deletePorto']);
+
+Route::get('/coba', [ViewController::class, 'coba']);

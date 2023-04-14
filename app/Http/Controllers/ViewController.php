@@ -30,4 +30,8 @@ class ViewController extends Controller
     public function formPorto(){
         return view('pages.formPortoPage');
     }
+
+    public function coba(){
+        return response()->json(['mesg' => 'Sucess']);
+    }
 }
