@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js', 
                 'resources/js/nav.js',
                 'resources/js/editor.js',
+                'resources/js/editorView.js',
             ],
             refresh: true,
         })
