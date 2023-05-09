@@ -27,4 +27,7 @@ Route::get('/form-porto', [ViewController::class, 'formPorto']);
 Route::post('/form-submit', [PortoController::class, 'createPorto']);
 Route::get('/porto-delete/{portoId}', [PortoController::class, 'deletePorto']);
 
-Route::get('/coba', [ViewController::class, 'coba']);
+Route::get('/form-porto/edit/{id}', [ViewController::class, 'viewPorto']);
+Route::post('/form-porto/update/{id}', [PortoController::class, 'updatePorto']);
+
+Route::get('/porto/detail/{id}', [ViewController::class, 'viewDetailPorto']);

@@ -14,6 +14,7 @@ class PortoController extends Controller
         try {
             $request->validate([
                 'title' => 'required|string',
+                'short_desc' => 'nullable|string',
                 'description' => 'nullable|string',
                 'photo' => 'nullable|image',
                 'link' => 'required|string',
@@ -23,6 +24,7 @@ class PortoController extends Controller
             DB::beginTransaction();
             $porto = Porto::create([
                 'title' => $request->title,
+                'short_desc' => $request->short_desc,
                 'description' => $request->description,
                 'user_id' => $user->id,
                 'link' => $request->link,
@@ -30,6 +32,48 @@ class PortoController extends Controller
             DB::commit();
             $porto = Porto::find($porto->id);
             if($request->file('photo')){
+                $file = $request->file('photo');
+                $extension = $file->extension();
+                $path = $file->storeAs('./porto','Porto-'.$porto->id.'.'.$extension);   
+                DB::beginTransaction();
+                $porto->update(['photo'=> $path]);
+                DB::commit();
+            }
+            
+            return redirect('/')->with('info', 'Success Add Porto');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function updatePorto($portoId, Request $request){
+        try {
+            $request->validate([
+                'title' => 'required|string',
+                'short_desc' => 'nullable|string',
+                'description' => 'nullable|string',
+                'photo' => 'nullable|image',
+                'link' => 'required|string',
+            ]);
+            
+            $user = auth()->user();
+            DB::beginTransaction();
+            $porto = Porto::find($portoId);
+            if(!$porto){
+                return back()->with('error', 'Porto Tidak Ditemukan');
+            }
+            $porto->update([
+                'title' => $request->title,
+                'short_desc' => $request->short_desc,
+                'description' => $request->description,
+                'user_id' => $user->id,
+                'link' => $request->link,
+            ]);            
+            DB::commit();
+            if($request->file('photo')){
+                $porto = Porto::find($portoId);
+                $previousPath = $porto->photo;
+
                 $file = $request->file('photo');
                 $extension = $file->extension();
                 $path = $file->storeAs('./porto','Porto-'.$porto->id.'.'.$extension);   
