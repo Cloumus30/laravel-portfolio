@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class ViewController extends Controller
 {
     public function home(){
-        $porto = Porto::orderBy('updated_at')->get();
+        $porto = Porto::orderBy('updated_at', 'desc')->get();
         $porto->transform(function($value){
             $value->img_url = ($value->photo) ? Storage::url($value->photo) : null;
             return $value;
@@ -33,9 +33,23 @@ class ViewController extends Controller
 
     public function viewPorto($id){
         $porto = Porto::find($id);
+        if(!$porto){
+            return back()->with('error', 'Porto Tidak Ditemukan');
+        }
         $porto =collect($porto->toArray());
         $img_url = ($porto['photo']) ? Storage::url($porto['photo']) : null;
         $porto['img_url'] = $img_url;
         return view('pages.formPortoPage', ['porto' => $porto]);
+    }
+
+    public function viewDetailPorto($id){
+        $porto = Porto::find($id);
+        if(!$porto){
+            return back()->with('error', 'Porto Tidak Ditemukan');
+        }
+        $porto =collect($porto->toArray());
+        $img_url = ($porto['photo']) ? Storage::url($porto['photo']) : null;
+        $porto['img_url'] = $img_url;
+        return view('pages.detailPortoPage',['porto' => $porto]);
     }
 }
