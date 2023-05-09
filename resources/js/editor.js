@@ -3,6 +3,12 @@ const quill = new Quill('#editor', {
     theme: 'snow'
 });
 let quillVal = null;
+let description = document.getElementById('description');
+
+if(description.value){
+  quillVal = description.value;
+  quill.root.innerHTML = quillVal;
+}
 
 // Get Quill Editor Value as HTML
 quill.on('text-change', function(delta, oldDelta, source) {
@@ -20,7 +26,7 @@ toolbar[0].classList.add('ql-bubble');
 window.submitFormPorto = function(){
   event.preventDefault()
   const formPorto = document.getElementById('form-porto');
-  const description = document.getElementById('description');
+  description = document.getElementById('description');
   description.value = quillVal;
   formPorto.submit();
 }

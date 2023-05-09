@@ -35,7 +35,7 @@
 
         @include('component.navside')
         
-        @include('component.formPorto')
+        @include('component.formPorto', ['data' => $porto ?? null])
         
       </div>
        <!-- Include the Quill library -->

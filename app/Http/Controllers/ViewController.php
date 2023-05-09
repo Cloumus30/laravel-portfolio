@@ -30,4 +30,12 @@ class ViewController extends Controller
     public function formPorto(){
         return view('pages.formPortoPage');
     }
+
+    public function viewPorto($id){
+        $porto = Porto::find($id);
+        $porto =collect($porto->toArray());
+        $img_url = ($porto['photo']) ? Storage::url($porto['photo']) : null;
+        $porto['img_url'] = $img_url;
+        return view('pages.formPortoPage', ['porto' => $porto]);
+    }
 }
