@@ -1,4 +1,4 @@
-<section class="text-center w-full max-h-screen flex justify-center">
+<section id="home-section" class="text-center w-full max-h-screen flex justify-center">
     <div class="flex flex-col">
         <img class="rounded-full drop-shadow-[42px_-17px_0px_#5426D6] aspect-square w-[358px]" src="{{Vite::asset('resources/images/dana.png')}}" alt="" >
 

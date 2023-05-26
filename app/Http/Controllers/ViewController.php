@@ -58,6 +58,6 @@ class ViewController extends Controller
         $porto =collect($porto->toArray());
         $img_url = ($porto['photo']) ? Storage::url($porto['photo']) : null;
         $porto['img_url'] = $img_url;
-        return view('pages.detailPortoPage',['porto' => $porto]);
+        return view('pages.landing-v2.detailPorto',['porto' => $porto]);
     }
 }

@@ -1,4 +1,4 @@
-<section class="flex flex-col justify-center pt-10">
+<section id="project-section" class="flex flex-col justify-center pt-10">
     <div class=" text-4xl md:text-5xl text-center font-[Inter] py-5">
         <h1>Latest Project</h1>
     </div>

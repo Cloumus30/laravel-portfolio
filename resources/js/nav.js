@@ -5,8 +5,20 @@ window.toggleNavside = function(){
 
 const nav = document.getElementById('navbar')
 let isNavColor = false;
+let scrollY = window.scrollY;
+if(scrollY > 100){
+    if(!isNavColor){
+        colorNav()
+        isNavColor = true;
+    }
+}else{
+    if(isNavColor){
+        transparentNav()
+        isNavColor = false;
+    }
+}
 addEventListener('scroll',(e) =>{
-    const scrollY = window.scrollY;
+    scrollY = window.scrollY;
     if(scrollY > 100){
         if(!isNavColor){
             colorNav()
