@@ -18,4 +18,8 @@ class Porto extends Model
         'link',
         'user_id',
     ];
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'tags_porto', 'porto_id', 'tag_id');
+    }
 }
