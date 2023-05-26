@@ -16,7 +16,7 @@ class ViewController extends Controller
             return $value;
         });
         
-        return view('pages.app',['portos' => $porto]);
+        return view('pages.landing-v2.detailPorto',['portos' => $porto]);
     }
 
     public function login(){
