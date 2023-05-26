@@ -37,6 +37,14 @@
                 <textarea id="short-desc" maxlength="215" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Aplikasi Ini Adalah..." name="short_desc">{{$data['short_desc']}}</textarea>
 
             </div>
+
+            <div class="mb-6">
+                <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tags (max : 8)</label>
+                <input id="tags" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="search" />
+                <ul id="tag-list" class="mt-5"></ul>
+                <input type="text" hidden id="check-tag" value="dana" name="tags_value">
+            </div>
+
             <div class="mb-6">
                 <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi App</label>
                 

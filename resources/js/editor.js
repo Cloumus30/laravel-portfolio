@@ -51,6 +51,8 @@ window.submitFormPorto = function(){
   const formPorto = document.getElementById('form-porto');
   description = document.getElementById('description');
   description.value = quillVal;
+  const checkboxs = document.getElementById('check-tag');
+  checkboxs.value = tagsInput.getTags()
   formPorto.submit();
 }
 

@@ -18,16 +18,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ViewController::class, 'home']);
 
-Route::get('/login', [ViewController::class, 'login']);
+Route::get('/login', [ViewController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth')->group(function(){
+    Route::get('/form-porto', [ViewController::class, 'formPorto']);
+    Route::post('/form-submit', [PortoController::class, 'createPorto']);
+    Route::get('/porto-delete/{portoId}', [PortoController::class, 'deletePorto']);
 
-Route::get('/form-porto', [ViewController::class, 'formPorto']);
-Route::post('/form-submit', [PortoController::class, 'createPorto']);
-Route::get('/porto-delete/{portoId}', [PortoController::class, 'deletePorto']);
-
-Route::get('/form-porto/edit/{id}', [ViewController::class, 'viewPorto']);
-Route::post('/form-porto/update/{id}', [PortoController::class, 'updatePorto']);
+    Route::get('/form-porto/edit/{id}', [ViewController::class, 'viewPorto']);
+    Route::post('/form-porto/update/{id}', [PortoController::class, 'updatePorto']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
 
 Route::get('/porto/detail/{id}', [ViewController::class, 'viewDetailPorto']);

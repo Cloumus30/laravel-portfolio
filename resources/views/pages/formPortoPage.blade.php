@@ -14,6 +14,9 @@
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.bubble.css">
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rk4bir/simple-tags-input@latest/src/simple-tag-input.min.css">
+
     </head>
     <body >
       @include('component.navbar')
@@ -40,6 +43,21 @@
       </div>
        <!-- Include the Quill library -->
       <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/rk4bir/simple-tags-input@latest/src/simple-tag-input.min.js"></script>
+
+      <script>
+        /* JavaScript code */
+        let options = {
+            inputEl: "tags", 
+            listEl: "tag-list",
+            autocompleteSearchList:[
+                'coba1',
+                'cob2'
+            ]
+        };
+        var tagsInput = new simpleTagsInput(options);
+        
+      </script>
 
       <script src="{{Vite::asset('resources/js/nav.js')}}"></script>
       <script src="{{Vite::asset('resources/js/editor.js')}}"></script>
