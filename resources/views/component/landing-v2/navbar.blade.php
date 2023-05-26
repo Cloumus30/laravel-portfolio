@@ -17,6 +17,11 @@
           <li>
             <a href="#" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">Services</a>
           </li>
+          @auth
+            <li>
+              <a href="/logout" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">Logout</a>
+            </li>    
+          @endauth
       </ul>
     </div>
     </div>

@@ -31,7 +31,7 @@
             </div>
 
             <div class="mt-5">
-                @include('component.landing-v2.section3')
+                @include('component.landing-v2.section3', ['portos' => $portos])
             </div>
         </main>
         
@@ -40,8 +40,8 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
 
         <script>
-            const images = document.getElementsByClassName('images');
-            new simpleParallax(images)
+            // const images = document.getElementsByClassName('images');
+            // new simpleParallax(images)
         </script>
     </body>
 </html>

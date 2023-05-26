@@ -20,6 +20,6 @@ class Porto extends Model
     ];
 
     public function tags(){
-        return $this->belongsToMany(Tag::class, 'tags_porto', 'tag_id', 'porto_id');
+        return $this->belongsToMany(Tag::class, 'tags_porto', 'porto_id', 'tag_id');
     }
 }

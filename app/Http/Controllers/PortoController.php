@@ -89,6 +89,7 @@ class PortoController extends Controller
 
             if($request->tags_value){
                 $tags = explode(',', $request->tags_value);
+                $tagsPortoCurrent = TagPorto::where('porto_id', $porto->id)->delete();
                 foreach ($tags as $key => $value) {
                     $tag = Tag::where('name', $value)->first();
                     if($tag){
@@ -100,7 +101,6 @@ class PortoController extends Controller
                             'jumlah_porto' => 1,
                         ]);
                     }
-                    $tagsPortoCurrent = TagPorto::where('porto_id', $porto->id)->delete();
                     TagPorto::create([
                         'porto_id' => $porto->id,
                         'tag_id' => $tag->id,

@@ -39,23 +39,27 @@
         @include('component.navside')
         
         @include('component.formPorto', ['data' => $porto ?? null])
-        
+        <input type="text" hidden value="{{$tags}}" id="tags-master">
       </div>
        <!-- Include the Quill library -->
       <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
       <script src="https://cdn.jsdelivr.net/gh/rk4bir/simple-tags-input@latest/src/simple-tag-input.min.js"></script>
 
       <script>
+        const tagsMaster = document.getElementById('tags-master').value;
+        const tagsPorto = document.getElementById('check-tag').value;
         /* JavaScript code */
         let options = {
             inputEl: "tags", 
             listEl: "tag-list",
-            autocompleteSearchList:[
-                'coba1',
-                'cob2'
-            ]
+            autocompleteSearchList: JSON.parse(tagsMaster)
         };
         var tagsInput = new simpleTagsInput(options);
+        if((typeof tagsPorto !== 'undefined') && (typeof tagsPorto != null)){
+            tagsPorto.split(',').forEach(el => {
+                tagsInput.addTag(el);
+            });
+        }
         
       </script>
 
