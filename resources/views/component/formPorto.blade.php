@@ -6,6 +6,7 @@
         'description' => null,
         'img' => null,
         'img_url' => null,
+        'tags' => null,
     ];
     $linkForm = '/form-submit';
     if(isset($porto)){

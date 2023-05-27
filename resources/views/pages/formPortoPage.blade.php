@@ -39,7 +39,7 @@
         @include('component.navside')
         
         @include('component.formPorto', ['data' => $porto ?? null])
-        <input type="text" hidden value="{{$tags}}" id="tags-master">
+        <input type="text" hidden value="{{$tags ?? ''}}" id="tags-master">
       </div>
        <!-- Include the Quill library -->
       <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -48,6 +48,7 @@
       <script>
         const tagsMaster = document.getElementById('tags-master').value;
         const tagsPorto = document.getElementById('check-tag').value;
+        console.log(JSON.parse(tagsMaster))
         /* JavaScript code */
         let options = {
             inputEl: "tags", 

@@ -29,6 +29,9 @@ class ViewController extends Controller
 
     public function formPorto(){
         $tags = Tag::get();
+        $tags->transform(function($value){
+            return $value->name;
+        });
         return view('pages.formPortoPage', ['tags' => $tags]);
     }
 
