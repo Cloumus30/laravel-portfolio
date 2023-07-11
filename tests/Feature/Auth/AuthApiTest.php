@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -50,6 +50,17 @@ class AuthApiTest extends TestCase
 
      public function test_unauthorized_login():void
      {
-        
+        $response = $this->postJson('/api/login', [
+            'email' => 'admin@admi.com',
+            'password' => 'superamin123'
+        ]);
+
+        $response->assertStatus(403)
+            ->assertJson(fn (AssertableJson $json) => 
+            $json->hasAll(['error'])
+                ->whereAllType([
+                    'error' => 'string',
+                ])
+        );
      }
 }
