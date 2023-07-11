@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -30,10 +31,12 @@ class AuthController extends Controller
 
     protected function respondWithToken($token)
     {
+        $expiredTime = Auth::guard('api')->factory()->getTTL() * 60;
+        
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+            'expires_in' => Carbon::now()->addSeconds($expiredTime)->toDateTimeString()
         ]);
     }
 }

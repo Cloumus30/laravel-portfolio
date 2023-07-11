@@ -21,8 +21,16 @@
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
+        <!-- DB -->
+        <env name="DB_CONNECTION" value="pgsql"/>
+        <env name="DB_DATABASE" value="porto"/>
+        <env name="DB_USERNAME" value="dana"/>
+        <env name="DB_PASSWORD" value="dana"/>
+        <env name="DATABASE_SCHEMA" value="porto_test"/>
+        <!-- DB -->
+        <!-- JWT -->
+        <env name="JWT_SECRET" value="WWs7gS4ug1xToKwoYX2vTud6NgTAyR6OxjOibjoLMIqfGGwiyssknmoYI2pZnWUX"/>
+        <!-- JWT -->
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
