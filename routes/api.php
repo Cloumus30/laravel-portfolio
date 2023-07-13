@@ -24,4 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [AuthController::class, 'login']);
 
 Route::get('list-porto',[APIPortoController::class, 'listPorto'])->middleware('auth:api');
-Route::post('create-porto', [APIPortoController::class, 'createPorto']);
+Route::post('create-porto', [APIPortoController::class, 'createPorto'])->middleware('auth:api');
+Route::put('update-porto/{portoId}', [APIPortoController::class, 'updatePorto'])->middleware('auth:api');
+Route::delete('delete-porto/{portoId}', [APIPortoController::class, 'deletePorto'])->middleware('auth:api');

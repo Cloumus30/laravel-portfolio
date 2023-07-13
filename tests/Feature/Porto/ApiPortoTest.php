@@ -13,12 +13,13 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\Fluent\AssertableJson;
+use PHPUnit\Framework\Attributes\Depends;
 use Tests\TestCase;
 use Tests\Trait\TestTrait;
 
 class ApiPortoTest extends TestCase
 {
-    use RefreshDatabase, TestTrait;
+    use TestTrait, RefreshDatabase;
     
     public function test_check_portos_table(){
         $table = (new Porto())->getTable();
@@ -61,13 +62,13 @@ class ApiPortoTest extends TestCase
         );
     }
 
-    public function test_create_porto():void
+    public function test_create_porto()
     {
         // Fake Input file and tags
         $file = UploadedFile::fake()->image('avatar.jpg');
         $tags = 'testing1, testing2, testing3';
 
-        $response = $this->postJson('/api/create-porto',[
+        $response = $this->actingAs($this->getUser(),'api')->postJson('/api/create-porto',[
             'title' => 'Judul test',
             'short_desc' => 'testing',
             'description' => 'testing',
@@ -82,6 +83,10 @@ class ApiPortoTest extends TestCase
         });
         $portoDat = $response->json()['data'];
         $portoId = $portoDat['id'];
+
+        // Input into class var
+        $arr['portoId'] = $portoId;
+        $arr['portoCreated'] = $portoDat;
         
         // Check if file uploaded Successfully
         $filePath = Storage::path("/porto/Porto-$portoId.jpg");
@@ -111,16 +116,66 @@ class ApiPortoTest extends TestCase
             ]);
         }
 
-        
+        return $arr;
     }
 
-    public function test_update_porto():void
+    #[Depends('test_create_porto')]
+    public function test_update_porto_no_image(array $dat):void
     {
+        $porto = Porto::factory()->create();
+        
+         $tags = 'testingupdate1, testing2, testingupdate3';
 
+         $data_update = [
+            'title' => 'Judul Update test',
+            'short_desc' => 'testing update',
+            'description' => 'testing',
+            'link' => 'link test',
+            'tags_value' => $tags,
+         ];
+         
+         $response = $this->actingAs($this->getUser(),'api')
+            ->putJson('/api/update-porto/'.$porto->id, $data_update);
+        
+        //  Check response attribute and status
+         $response->assertStatus(200)
+             ->assertJson(function(AssertableJson $json){
+             return $json->hasAll(['message','data']);
+         });
+         
+         //Check if data portos success updated 
+         $data_update['id'] = $porto->id;
+         unset($data_update['tags_value']);
+        $this->assertDatabaseHas((new Porto)->getTable(), $data_update);
+
+        $tags = explode(',', $tags);
+
+        // Check if data tags, and tag_portos table successfully
+        foreach ($tags as $key => $value) {
+            $this->assertDatabaseHas((new Tag())->getTable(),[
+                'name' => $value,
+            ]);
+            $tag = Tag::where('name', $value)->first();
+            $this->assertDatabaseHas((new TagPorto())->getTable(), [
+                'porto_id' => $porto->id,
+                'tag_id' => $tag->id,
+            ]);
+        }
     }
 
     public function test_delete_porto():void
     {
+        $porto = Porto::factory()->create();
+        $response = $this->actingAs($this->getUser(),'api')
+            ->deleteJson('/api/delete-porto/'.$porto->id);
+        
+        //  Check response attribute and status
+         $response->assertStatus(200)
+             ->assertJson(function(AssertableJson $json){
+             return $json->hasAll(['message','data']);
+         });
 
+        //  Check if porto deleted
+        $this->assertDatabaseMissing((new Porto())->getTable(), $porto->toArray());
     }
 }
