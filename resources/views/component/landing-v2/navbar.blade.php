@@ -9,13 +9,13 @@
     <div class="items-center justify-between w-auto" id="navbar-sticky">
       <ul class="flex font-medium rounded-lg bg-transparent">
         <li>
-            <a href="/#home-section" class="block py-2 pl-3 pr-4 rounded hover:text-blue-500 hover:bg-gray-100" aria-current="page">Home</a>
+            <a onclick="functionforscroll('home-section')" class="block hover:cursor-pointer py-2 pl-3 pr-4 rounded hover:text-blue-500 hover:bg-gray-100" aria-current="page">{{__('Landing.home')}}</a>
           </li>
           <li>
-            <a href="/#about-section" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">About</a>
+            <a onclick="functionforscroll('about-section')" class="block hover:cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">{{__('Landing.about')}}</a>
           </li>
           <li>
-            <a href="/#project-section" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">Project</a>
+            <a onclick="functionforscroll('project-section')" class="block hover:cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">{{__('Landing.project')}}</a>
           </li>
           @auth
             <li>

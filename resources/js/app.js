@@ -37,4 +37,9 @@ if($targetEl){
 }
 
  
+// Change To section id without change url
+window.functionforscroll = function(id){
+  const reqId = id;
+  window.scrollTo(0, document.getElementById(reqId).offsetTop-70);
+}
 

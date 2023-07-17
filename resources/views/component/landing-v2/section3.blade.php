@@ -1,6 +1,6 @@
 <section id="project-section" class="flex flex-col justify-center pt-10">
     <div class=" text-4xl md:text-5xl text-center font-[Inter] py-5 mb-24">
-        <h1>Latest Project</h1>
+        <h1>{{__('Landing.latestProject')}}</h1>
     </div>
     <div class="">
         @foreach ($portos as $item)
