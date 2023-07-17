@@ -53,6 +53,9 @@ window.submitFormPorto = function(){
   description.value = quillVal;
   const checkboxs = document.getElementById('check-tag');
   checkboxs.value = tagsInput.getTags()
+  const locale = new URLSearchParams(window.location.search).get('locale') || 'id';
+  const localeCode = document.getElementById('locale-code').value = locale;
+
   formPorto.submit();
 }
 
