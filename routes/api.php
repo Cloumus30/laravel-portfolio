@@ -27,3 +27,7 @@ Route::get('list-porto',[APIPortoController::class, 'listPorto'])->middleware('a
 Route::post('create-porto', [APIPortoController::class, 'createPorto'])->middleware('auth:api');
 Route::put('update-porto/{portoId}', [APIPortoController::class, 'updatePorto'])->middleware('auth:api');
 Route::delete('delete-porto/{portoId}', [APIPortoController::class, 'deletePorto'])->middleware('auth:api');
+
+Route::get('tr/list',  [APIPortoController::class, 'listPortoTranslate'])->middleware('auth:api');
+Route::post('tr/create-porto', [APIPortoController::class, 'createPortoTranslate'])->middleware('auth:api');
+Route::put('tr/update-porto/{portoId}', [APIPortoController::class, 'updatePortoTranslate'])->middleware('auth:api');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MPorto;
 use App\Models\Porto;
 use App\Models\Tag;
 use App\Models\TagPorto;
@@ -149,4 +150,5 @@ class PortoController extends Controller
             return back()->with('error', $th->getMessage());
         }
     }
+
 }

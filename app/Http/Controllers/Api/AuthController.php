@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    /**
+     * Login With API
+     * 
+     * @bodyParam email string required Email For Login. Example: admin@admin.com
+     * @bodyparam password string required Password For Login. Example: superadmin123
+     */
     public function login(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
@@ -38,5 +44,9 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => Carbon::now()->addSeconds($expiredTime)->toDateTimeString()
         ]);
+    }
+
+    public function forbiden(){
+        return $this->sendApiError('Unauthorized', 403);
     }
 }
