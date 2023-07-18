@@ -9,7 +9,9 @@
         'tags' => null,
     ];
     $linkForm = '/form-submit';
-    if(isset($porto)){
+    $linkTr = '/form-porto';
+
+    if(isset($is_edit)){        
         $data = [
             'title' => $porto['title'] ?? null,
             'link' => $porto['link'] ?? null,
@@ -17,9 +19,10 @@
             'description' => $porto['description'] ?? null,
             'img' => $porto['photo'] ?? null,
             'img_url' => $porto['img_url'] ?? null,
-            'tags' => implode(',',$porto['tags']) ?? null,
+            'tags' => implode(',',$porto['tags'] ?? []) ?? null,
         ];
-        $linkForm = '/form-porto/update/' . $porto['id'];
+        $linkForm = '/form-porto/update/' . $m_porto_id;
+        $linkTr = '/form-porto/edit/'.$m_porto_id;
     }
 @endphp
 <main class="w-full md:w-10/12 text-white bg-[#060047] max-h-screen overflow-auto">
@@ -27,10 +30,10 @@
     <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 m-5 w-full">
         <ul class="flex flex-wrap -mb-px">
             <li class="mr-2">
-                <a href="/form-porto?locale=id" id="tab-local-id" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Indonesia</a>
+                <a href="{{$linkTr}}?locale=id" id="tab-local-id" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Indonesia</a>
             </li>
             <li class="mr-2">
-                <a href="/form-porto?locale=en" id="tab-local-en" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">English</a>
+                <a href="{{$linkTr}}?locale=en" id="tab-local-en" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">English</a>
             </li>
         </ul>
     </div>

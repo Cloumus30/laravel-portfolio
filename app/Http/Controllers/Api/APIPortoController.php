@@ -190,6 +190,9 @@ class APIPortoController extends Controller
             $portos = MPorto::with('translations.tags')->paginate()
                 ->through(function($value) use($locale){
                     $val = $value->translateOrDefault($locale);
+                    if(!$val){
+                        
+                    }
                     $val->is_translated = ($val->locale == $locale) ? true : false;
                     return $val;
                 });
