@@ -44,15 +44,17 @@ services:
     networks:
       - porto
 
-  npmporto:
-    image: node:16
-    container_name: porto-npm
+  nodejs:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
     volumes:
-      - ./:/var/www/html
-      - .env:/var/www/html/.env
-    working_dir: /var/www/html
-    networks:
-      - porto
+      - ./:/home/node/app
+    expose:
+      - "8081"
+    command: "npm start"
 
 networks:
   porto:
