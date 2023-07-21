@@ -1,5 +1,9 @@
 FROM php:8.2-fpm
 
+# Arguments defined in docker-compose.yml
+ARG user
+ARG uid
+
 RUN apt-get update \
   && apt-get install -y \
   git \
