@@ -103,12 +103,14 @@ class PortoController extends Controller
                 'short_desc' => $request->short_desc ?? null,
                 'description' => $request->description ?? null,
                 'link' => $request->link ?? null,
+                'user_id' => $user->id,
             ];
             // remove null value
             $data_update = array_filter($data_update);
             $data_update = [
                 $locale => $data_update,
             ];
+            
             // return $this->sendApiResponse($data_update);
             // foreach ($data_update as $key => $value) {
             //     $porto->translate($locale)->$key = $value;

@@ -11,12 +11,12 @@
         <li>
             <a onclick="functionforscroll('home-section')" class="block hover:cursor-pointer py-2 pl-3 pr-4 rounded hover:text-blue-500 hover:bg-gray-100" aria-current="page">{{__('Landing.home')}}</a>
           </li>
-          <li>
+          {{-- <li>
             <a onclick="functionforscroll('about-section')" class="block hover:cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">{{__('Landing.about')}}</a>
           </li>
           <li>
             <a onclick="functionforscroll('project-section')" class="block hover:cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">{{__('Landing.project')}}</a>
-          </li>
+          </li> --}}
           @auth
             <li>
               <a href="/form-porto" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-blue-700">Tambah Porto</a>
@@ -35,12 +35,12 @@
               <div class="z-50 hidden my-4 text-base list-none nav-dropdown divide-y divide-gray-100 rounded-lg shadow" id="language-dropdown-menu">
                 <ul class="py-2 font-medium" role="none">
                   <li>
-                    <a href="/?locale=en" class="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-blue-700" role="menuitem">
+                    <a onclick="changeLang('en')" class="block px-4 py-2 text-sm hover:bg-gray-100 hover:cursor-pointer hover:text-blue-700" role="menuitem">
                       @include('component/landing-v2/flagTranslate', ['flag' => 'en'])
                     </a>
                   </li>
                   <li>
-                    <a href="/?locale=id" class="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-blue-700" role="menuitem">
+                    <a onclick="changeLang('id')" class="block px-4 py-2 text-sm hover:bg-gray-100 hover:cursor-pointer hover:text-blue-700" role="menuitem">
                       <div class="inline-flex items-center">
                         @include('component/landing-v2/flagTranslate', ['flag' => 'id'])
                       </div>

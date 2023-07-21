@@ -77,8 +77,13 @@ class ViewController extends Controller
     }
 
     public function viewDetailPorto($id){
-        $porto = Porto::find($id);
-        
+        $mporto = MPorto::find($id);
+        $porto = $mporto->translateOrDefault($this->locale);
+            
+        if(!$porto){
+            
+            $porto = $mporto->translations[0];
+        }
         if(!$porto){
             return back()->with('error', 'Porto Tidak Ditemukan');
         }
