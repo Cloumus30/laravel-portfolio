@@ -46,7 +46,7 @@ services:
 
   npm:
     image: node:16.20
-    container_name: npm
+    container_name: porto-npm
     volumes:
       - ./:/var/www/html
       - .env:/var/www/html/.env
