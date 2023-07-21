@@ -44,7 +44,7 @@ services:
     networks:
       - porto
 
-  npm:
+  npmporto:
     image: node:16.20
     container_name: porto-npm
     volumes:
