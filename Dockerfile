@@ -15,8 +15,9 @@ RUN apt-get update \
   unzip \
   zlib1g-dev \
   libpq-dev \
-  libzip-dev\
-  curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 
+  libzip-dev
+
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 
 
 RUN apt-get install -y nodejs\
   npm
