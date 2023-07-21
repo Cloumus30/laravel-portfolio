@@ -1,3 +1,10 @@
+FROM node:16.17 as node
+RUN mkdir -p /app
+WORKDIR /app
+RUN npm install -g npm@latest && \
+    npm install && \
+    npm run build
+
 FROM php:8.1-fpm
 
 # Arguments defined in docker-compose.yml
@@ -31,6 +38,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
+
+COPY --chown=www-data:www-data --from=frontend /app/public/ /var/www/public/build
 
 # Set working directory
 WORKDIR /var/www
