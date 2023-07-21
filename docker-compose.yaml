@@ -45,14 +45,12 @@ services:
       - porto
 
   npmporto:
-    image: node:16.20
+    image: node:16
     container_name: porto-npm
     volumes:
       - ./:/var/www/html
       - .env:/var/www/html/.env
     working_dir: /var/www/html
-    profiles: ["npm"]
-    entrypoint: ['npm']
     networks:
       - porto
 
