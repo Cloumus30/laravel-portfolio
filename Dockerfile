@@ -17,7 +17,15 @@ RUN apt-get update \
   libpq-dev \
   libzip-dev
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
+ENV NODE_VERSION 16.17.1
+
+# Install nvm with node and npm
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.39.0/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
