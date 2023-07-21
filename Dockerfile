@@ -17,10 +17,17 @@ RUN apt-get update \
   libpq-dev \
   libzip-dev
 
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 
+RUN mkdir -p /usr/local/nvm
 
-RUN apt-get install -y nodejs\
-  npm
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 16.17
+
+# Install nvm with node and npm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
