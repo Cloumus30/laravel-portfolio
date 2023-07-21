@@ -10,22 +10,22 @@
         <div class="mt-10">
             <ul class="flex justify-between ">
                 <li class="mx-2">
-                    <a href="">
+                    <a href="https://web.facebook.com/cloudiasimani" target="_blank">
                         <img class="w-3/4" src="{{Vite::asset('resources/images/icons/facebook.png')}}" alt="">
                     </a>
                 </li>
                 <li class="mx-2">
-                    <a href="">
+                    <a href="https://www.instagram.com/cloudiasimani" target="_blank" >
                         <img class="w-3/4" src="{{Vite::asset('resources/images/icons/instagram.png')}}" alt="">
                     </a>
                 </li>
                 <li class="mx-2">
-                    <a href="">
+                    <a href="https://www.linkedin.com/in/cloudias-imani-pradana-971b05204/" target="_blank">
                         <img class="w-3/4" src="{{Vite::asset('resources/images/icons/linkedin.png')}}" alt="">
                     </a>
                 </li>
                 <li class="mx-2">
-                    <a href="">
+                    <a href="https://wa.me/6281369622964" target="_blank">
                         <img class="w-3/4" src="{{Vite::asset('resources/images/icons/whatsapp.png')}}" alt="">
                     </a>
                 </li>

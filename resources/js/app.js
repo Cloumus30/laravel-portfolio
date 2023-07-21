@@ -37,4 +37,19 @@ if($targetEl){
 }
 
  
+// Change To section id without change url
+window.functionforscroll = function(id){
+  const reqId = id;
+  const el = document.getElementById(reqId);
+  if(!el){
+    const first = id.split('-')[0]
+    window.location.href = '/'+ window.location.search;
+  }
+  window.scrollTo(0, document.getElementById(reqId).offsetTop-70);
+}
+
+// Change Language Query Params Url
+window.changeLang = function(locale){
+  window.location.href = window.location.origin + window.location.pathname + '?locale=' + locale;
+}
 

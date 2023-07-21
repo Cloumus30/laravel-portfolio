@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController as ApiAuthController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PortoController;
 use App\Http\Controllers\ViewController;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ViewController::class, 'home']);
 
 Route::get('/login', [ViewController::class, 'login'])->name('login');
+Route::get('/forbiden', [ApiAuthController::class, 'forbiden'])->name('forbiden');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth')->group(function(){

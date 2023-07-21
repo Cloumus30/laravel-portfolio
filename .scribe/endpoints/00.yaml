@@ -1,0 +1,488 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/user
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Login With API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Email For Login.'
+        required: true
+        example: admin@admin.com
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'Password For Login.'
+        required: true
+        example: superadmin123
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: admin@admin.com
+      password: superadmin123
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/list-porto
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer dbkeaDfP8Eahc6Z6v543Vg1'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/create-porto
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer hka4gvdZ36E8Vca156DbfPe'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/update-porto/{portoId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      portoId:
+        name: portoId
+        description: ''
+        required: true
+        example: facere
+        type: string
+        custom: []
+    cleanUrlParameters:
+      portoId: facere
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer a6e5k168gvfEa4h3ZdVbPDc'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/delete-porto/{portoId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      portoId:
+        name: portoId
+        description: ''
+        required: true
+        example: explicabo
+        type: string
+        custom: []
+    cleanUrlParameters:
+      portoId: explicabo
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer f5haDPkZ1abVcEvg663d84e'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/tr/list
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Porto Translation'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      locale:
+        name: locale
+        description: 'nullable string Locale Code.'
+        required: false
+        example: id
+        type: string
+        custom: []
+    cleanQueryParameters:
+      locale: id
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer dP5aE6keD4Z36c1Vavg8fbh'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/tr/create-porto
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create Porto Translation'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title Of the Porto.'
+        required: true
+        example: 'Judul porto'
+        type: string
+        custom: []
+      short_desc:
+        name: short_desc
+        description: 'Short Description.'
+        required: true
+        example: 'Short Descript'
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'Full Description.'
+        required: true
+        example: 'Long Descriptions'
+        type: string
+        custom: []
+      photo:
+        name: photo
+        description: 'nullable Image of the Porto.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      link:
+        name: link
+        description: 'nullable Links To Portofolio.'
+        required: false
+        example: 'https://cloudias.my.id'
+        type: string
+        custom: []
+      tags_value:
+        name: tags_value
+        description: 'Tags Tech For Portofolio separate by comma.'
+        required: true
+        example: 'laravel,node js,php'
+        type: string
+        custom: []
+      locale_code:
+        name: locale_code
+        description: 'nullable Code Locale For translations.'
+        required: false
+        example: id
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: 'Judul porto'
+      short_desc: 'Short Descript'
+      description: 'Long Descriptions'
+      link: 'https://cloudias.my.id'
+      tags_value: 'laravel,node js,php'
+      locale_code: id
+    fileParameters:
+      photo: null
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer D4v3586Ebacg1Vha6ZPekdf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/tr/update-porto/{portoId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update Porto Translation'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      portoId:
+        name: portoId
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+    cleanUrlParameters:
+      portoId: est
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title Of the Porto.'
+        required: true
+        example: 'Judul porto'
+        type: string
+        custom: []
+      short_desc:
+        name: short_desc
+        description: 'Short Description.'
+        required: true
+        example: 'Short Descript'
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'Full Description.'
+        required: true
+        example: 'Long Descriptions'
+        type: string
+        custom: []
+      photo:
+        name: photo
+        description: 'nullable Image of the Porto.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      link:
+        name: link
+        description: 'nullable Links To Portofolio.'
+        required: false
+        example: 'https://cloudias.my.id'
+        type: string
+        custom: []
+      tags_value:
+        name: tags_value
+        description: 'Tags Tech For Portofolio separate by comma.'
+        required: true
+        example: 'laravel,node js,php'
+        type: string
+        custom: []
+      locale_code:
+        name: locale_code
+        description: 'nullable Code Locale For translations.'
+        required: false
+        example: id
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: 'Judul porto'
+      short_desc: 'Short Descript'
+      description: 'Long Descriptions'
+      link: 'https://cloudias.my.id'
+      tags_value: 'laravel,node js,php'
+      locale_code: id
+    fileParameters:
+      photo: null
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer aaD1E6VcdP4gh3Zfe6kb5v8'
+    controller: null
+    method: null
+    route: null
+    custom: []

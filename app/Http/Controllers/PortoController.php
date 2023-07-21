@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MPorto;
 use App\Models\Porto;
 use App\Models\Tag;
 use App\Models\TagPorto;
@@ -25,13 +26,20 @@ class PortoController extends Controller
             
             $user = auth()->user();
             DB::beginTransaction();
-            $porto = Porto::create([
-                'title' => $request->title,
-                'short_desc' => $request->short_desc,
-                'description' => $request->description,
+            $locale = $request->locale_code ?? 'id';
+            $data = [
                 'user_id' => $user->id,
-                'link' => $request->link,
-            ]);            
+                $locale => [
+                    'title' => $request->title,
+                    'short_desc' => $request->short_desc,
+                    'description' => $request->description,
+                    'photo' => $request->photo,
+                    'link' => $request->link,
+                    'user_id' => $user->id,
+                ]
+            ];
+            $Mporto = MPorto::create($data);
+
             if($request->tags_value){
                 $tags = explode(',', $request->tags_value);
                 foreach ($tags as $key => $value) {
@@ -46,13 +54,13 @@ class PortoController extends Controller
                         ]);
                     }
                     TagPorto::create([
-                        'porto_id' => $porto->id,
+                        'porto_id' => $Mporto->translate($locale)->id,
                         'tag_id' => $tag->id,
                     ]);
                 }
             }
             DB::commit();
-            $porto = Porto::find($porto->id);
+            $porto = Porto::find($Mporto->translate($locale)->id);
             if($request->file('photo')){
                 $file = $request->file('photo');
                 $extension = $file->extension();
@@ -81,15 +89,41 @@ class PortoController extends Controller
             ]);
             
             $user = auth()->user();
+            $locale = $request->locale_code ?? 'id';
             DB::beginTransaction();
-            $porto = Porto::find($portoId);
-            if(!$porto){
+            $mporto = MPorto::find($portoId);
+            
+            if(!$mporto){
                 return back()->with('error', 'Porto Tidak Ditemukan');
             }
+            
+            
+            $data_update = [
+                'title' => $request->title ?? null,
+                'short_desc' => $request->short_desc ?? null,
+                'description' => $request->description ?? null,
+                'link' => $request->link ?? null,
+                'user_id' => $user->id,
+            ];
+            // remove null value
+            $data_update = array_filter($data_update);
+            $data_update = [
+                $locale => $data_update,
+            ];
+            
+            // return $this->sendApiResponse($data_update);
+            // foreach ($data_update as $key => $value) {
+            //     $porto->translate($locale)->$key = $value;
+            // }
+            // return $this->sendApiResponse($porto);
+            $mporto->update($data_update);      
 
             if($request->tags_value){
                 $tags = explode(',', $request->tags_value);
-                $tagsPortoCurrent = TagPorto::where('porto_id', $porto->id)->delete();
+                
+                if($mporto->hasTranslation()){
+                    $tagsPortoCurrent = TagPorto::where('porto_id', $mporto->translate($locale)->id)->delete();
+                }
                 foreach ($tags as $key => $value) {
                     $tag = Tag::where('name', $value)->first();
                     if($tag){
@@ -102,28 +136,20 @@ class PortoController extends Controller
                         ]);
                     }
                     TagPorto::create([
-                        'porto_id' => $porto->id,
+                        'porto_id' => $mporto->translate($locale)->id,
                         'tag_id' => $tag->id,
                     ]);
                 }
             }
-            
-            $porto->update([
-                'title' => $request->title,
-                'short_desc' => $request->short_desc,
-                'description' => $request->description,
-                'user_id' => $user->id,
-                'link' => $request->link,
-            ]);      
                   
             DB::commit();
             if($request->file('photo')){
-                $porto = Porto::find($portoId);
+                $porto = Porto::find($mporto->translate($locale)->id);
                 $previousPath = $porto->photo;
 
                 $file = $request->file('photo');
                 $extension = $file->extension();
-                $path = $file->storeAs('./porto','Porto-'.$porto->id.'.'.$extension);   
+                $path = $file->storeAs('/porto','Porto-'.$porto->id.'.'.$extension);   
                 DB::beginTransaction();
                 $porto->update(['photo'=> $path]);
                 DB::commit();
@@ -131,6 +157,7 @@ class PortoController extends Controller
             
             return redirect('/')->with('info', 'Success Add Porto');
         } catch (\Throwable $th) {
+            dd($th);
             return back()->with('error', $th->getMessage());
         }
     }
@@ -138,9 +165,11 @@ class PortoController extends Controller
     public function deletePorto($portoId){
         try {
             DB::beginTransaction();
-            $porto = Porto::find($portoId);
-            if($porto->photo){
-                Storage::delete($porto->photo);
+            $porto = MPorto::find($portoId);
+            foreach ($porto->translations as $key => $value) {
+                if($value->photo){
+                    Storage::delete($value->photo);
+                }
             }
             $porto->delete();
             DB::commit();
@@ -149,4 +178,5 @@ class PortoController extends Controller
             return back()->with('error', $th->getMessage());
         }
     }
+
 }
