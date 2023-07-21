@@ -15,7 +15,11 @@ RUN apt-get update \
   unzip \
   zlib1g-dev \
   libpq-dev \
-  libzip-dev
+  libzip-dev\
+  curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 
+
+RUN apt-get install -y nodejs\
+  npm
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
