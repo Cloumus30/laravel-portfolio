@@ -1,11 +1,3 @@
-FROM node:16.17 as nodevite
-RUN mkdir -p /app
-WORKDIR /app
-COPY ./ /app/
-RUN npm install -g npm@latest && \
-    npm install && \
-    npm run build
-
 FROM php:8.1-fpm
 
 # Arguments defined in docker-compose.yml
@@ -25,6 +17,8 @@ RUN apt-get update \
   libpq-dev \
   libzip-dev
 
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -40,7 +34,6 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
-COPY --chown=www-data:www-data --from=nodevite /app/public/build /var/www/public/build
 
 # Set working directory
 WORKDIR /var/www
