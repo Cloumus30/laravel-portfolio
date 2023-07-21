@@ -1,6 +1,7 @@
-FROM node:16.17 as node
+FROM node:16.17 as nodevite
 RUN mkdir -p /app
 WORKDIR /app
+COPY ./ /app/
 RUN npm install -g npm@latest && \
     npm install && \
     npm run build
@@ -39,7 +40,7 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
-COPY --chown=www-data:www-data --from=frontend /app/public/ /var/www/public/build
+COPY --chown=www-data:www-data --from=nodevite /app/public/build /var/www/public/build
 
 # Set working directory
 WORKDIR /var/www
