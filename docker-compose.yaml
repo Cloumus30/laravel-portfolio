@@ -44,6 +44,18 @@ services:
     networks:
       - porto
 
+  npm:
+    image: node:16.20
+    container_name: npm
+    volumes:
+      - ./:/var/www/html
+      - .env:/var/www/html/.env
+    working_dir: /var/www/html
+    profiles: ["npm"]
+    entrypoint: ['npm']
+    networks:
+      - porto
+
 networks:
   porto:
     driver: bridge
