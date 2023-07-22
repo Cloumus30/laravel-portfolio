@@ -12,6 +12,8 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 RUN node -v
 RUN npm -v
 
+ENV TZ="Asia/Jakarta"
+
 RUN apt-get update \
   && apt-get install -y \
   git \
