@@ -32,6 +32,9 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | b
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
+RUN node -v
+RUN npm -v
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
