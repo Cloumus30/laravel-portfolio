@@ -1,8 +1,16 @@
+FROM node:16.20 AS node
 FROM php:8.1-fpm
 
 # Arguments defined in docker-compose.yml
 ARG user
 ARG uid
+
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+
+RUN node -v
+RUN npm -v
 
 RUN apt-get update \
   && apt-get install -y \
@@ -17,23 +25,6 @@ RUN apt-get update \
   libpq-dev \
   libzip-dev
 
-RUN mkdir -p /usr/local/nvm
-
-ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 16.17
-
-# Install nvm with node and npm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
-ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-
-RUN node -v
-RUN npm -v
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
