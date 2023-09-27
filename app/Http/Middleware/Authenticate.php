@@ -16,6 +16,6 @@ class Authenticate extends Middleware
         $temp = [
             'error' => "Unauthorized",
         ];
-        return route('forbiden');
+        return route('login');
     }
 }

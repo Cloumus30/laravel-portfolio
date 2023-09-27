@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PortoController as AdminPortoController;
 use App\Http\Controllers\Api\AuthController as ApiAuthController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PortoController;
@@ -31,6 +33,13 @@ Route::middleware('auth')->group(function(){
     Route::get('/form-porto/edit/{id}', [ViewController::class, 'viewPorto']);
     Route::post('/form-porto/update/{id}', [PortoController::class, 'updatePorto']);
     Route::get('/logout', [AuthController::class, 'logout']);
+
+        // Admin
+    Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+    Route::get('/admin/porto', [AdminPortoController::class, 'index']);
+    Route::post('/admin/porto-import', [AdminPortoController::class, 'import']);
+    Route::get('/admin/porto-export', [AdminPortoController::class, 'export']);
+    Route::get('/admin/porto-export-pdf', [AdminPortoController::class, 'exportPdf']);
 });
 
 Route::get('/porto/detail/{id}', [ViewController::class, 'viewDetailPorto']);
