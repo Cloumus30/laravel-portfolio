@@ -18,6 +18,9 @@
                 <th scope="col" class="px-6 py-3">
                     Link
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +40,15 @@
                     </td>
                     <td class="px-6 py-4">
                         {{$item->link}}
+                    </td>
+                    <td class="px-6 py-4 flex">
+                        <a href="/form-porto/edit/{{$item->m_porto_id}}?locale={{app()->getLocale()}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center mx-2">
+                            @include('component.icons',['type' => 'edit'])
+                        </a>
+
+                        <a href="/porto-delete/{{$item->m_porto_id}}" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center mx-2">
+                            @include('component.icons',['type' => 'delete'])
+                        </a>
                     </td>
                 </tr>    
             @endforeach
