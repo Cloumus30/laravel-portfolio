@@ -11,9 +11,12 @@ services:
     image: porto-cloudy
     container_name: porto-app
     restart: unless-stopped
-    working_dir: /var/www/
+    ports:
+      - 8000:80
+    working_dir: /var/www/html/
     volumes:
-      - ./:/var/www
+      - ./storage/logs:/var/www/html/storage/logs
+      - ./storage/app:/var/www/html/storage/app
     networks:
       - porto
 
@@ -29,18 +32,6 @@ services:
       - 5434:5432
     volumes:
       - ./docker-compose/postgres:/var/lib/postgresql/data
-    networks:
-      - porto
-
-  nginx:
-    image: nginx:1.17-alpine
-    container_name: porto-nginx
-    restart: unless-stopped
-    ports:
-      - 8000:80
-    volumes:
-      - ./:/var/www
-      - ./docker-compose/nginx:/etc/nginx/conf.d
     networks:
       - porto
 
